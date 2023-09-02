@@ -6,15 +6,15 @@ export interface iButtonProps {
 
 export const Button = styled.button<iButtonProps>`
   background-color: ${({ theme }) => theme.colors.brand.accent};
-  padding: 0.5rem 2rem;
+  padding: .8rem 2rem;
   color: white;
   font-size: ${({ theme }) => theme.typography['xl']};
+  border-radius: 8px;
   ${({ theme, variant }) => {
     switch (variant) {
       case "icon-button":
         return css`
           padding: 0.5rem;
-          border-radius: 8px;
           display: flex;
           justify-content: center;
           align-items: center;
