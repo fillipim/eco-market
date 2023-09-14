@@ -1,41 +1,72 @@
 "use client";
 
 import { Button } from "../Button";
-import IconButton from "../IconButton";
 import Input from "../Input";
 import { StyleLink } from "../Link";
 import * as S from "./header.style";
 import { AiOutlineSearch } from "react-icons/ai";
-import { BiUserCircle, BiSolidCartAlt } from "react-icons/bi";
+import { BiUserCircle, BiSolidCartAlt, BiLogOutCircle } from "react-icons/bi";
+import {
+  Menu,
+  MenuButton,
+  Button as ChackraButton,
+  MenuList,
+  MenuItem,
+  IconButton as iconChackra
+} from "@chakra-ui/react";
+import { useAuth } from "@/contexts/AuthContext";
+import IconButton from "../IconButton";
+import Link from "next/link";
 
 const Header: React.FC = () => {
+  const { isLoged, user, logOut } = useAuth();
+  console.log(user);
+  
   return (
     <S.Header>
       <S.HeaderTop>
-        <p>Welcome to Eco Market</p>
+        <p>Welcome to Food Market</p>
 
-        <div>
-          <StyleLink href="/login">Login</StyleLink>
-
-          <span />
-
-          <StyleLink href="/register">Cadastre-se</StyleLink>
+        <div className="auth_nav">
+          {!isLoged ? (
+            <>
+              <StyleLink href="/login">Login</StyleLink>
+              <StyleLink href="/register">Cadastre-se</StyleLink>
+            </>
+          ) : (
+            <p>Olá {user?.nome}</p>
+          )}
         </div>
       </S.HeaderTop>
 
       <S.HeaderCenter>
-        <h1>Eco Market</h1>
+        <h1>Food Market</h1>
 
-        <div>
+        <div className="input_box">
           <Input placeholder="Busque por..." />
-          <IconButton icon={AiOutlineSearch} />
+          <IconButton aria-label="Search" icon={AiOutlineSearch} />
         </div>
 
         <S.Nav>
-          <Button variant="unstyled">
-            <BiUserCircle />
-            Perfil
-          </Button>
+          <Menu>
+            <MenuButton as={iconChackra} icon={<BiUserCircle/>}></MenuButton>
+            <MenuList>
+              {isLoged ? (
+                <>
+                  <MenuItem color="black" as={Link} href="/perfil">
+                    Perfil
+                  </MenuItem>
+                  <MenuItem
+                    as={ChackraButton}
+                    leftIcon={<BiLogOutCircle />}
+                    onClick={logOut}
+                  >Sair</MenuItem>
+                </>
+              ) : (
+                <MenuItem as={Link} href="/register">Criar Conta</MenuItem>
+              )}
+            </MenuList>
+          </Menu>
           <Button variant="unstyled">
             <BiSolidCartAlt />
             Carrinho
