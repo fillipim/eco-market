@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
 import Header from "@/components/Header";
 import Providers from "../../providers";
 import GlobalStyles from "@/styles/global";
 import StyledComponentsRegistry from "@/app/registry";
 import { ToastContainer } from "react-toastify";
-import Footer from "@/components/Footer"
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Food Market",
@@ -20,21 +20,19 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
-      <ToastContainer
+        <ToastContainer
           position="top-right"
           theme="colored"
           autoClose={4000}
           hideProgressBar
         />
         <StyledComponentsRegistry>
-
           <Providers>
             <GlobalStyles />
             <Header />
             {children}
-            <Footer/>
+            <Footer />
           </Providers>
-
         </StyledComponentsRegistry>
       </body>
     </html>

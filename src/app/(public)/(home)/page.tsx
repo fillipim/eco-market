@@ -61,7 +61,7 @@ export default function Home() {
             path="/"
           />
           <StoreCard
-            id={1}
+            id={2}
             nome="Emici Donaidis"
             nota={4.5}
             categoria="lanches"
@@ -72,7 +72,7 @@ export default function Home() {
             path="/"
           />
           <StoreCard
-            id={1}
+            id={3}
             nome="Emici Donaidis"
             nota={4.5}
             categoria="lanches"
@@ -83,7 +83,7 @@ export default function Home() {
             path="/"
           />
           <StoreCard
-            id={1}
+            id={4}
             nome="Emici Donaidis"
             nota={4.5}
             categoria="lanches"
