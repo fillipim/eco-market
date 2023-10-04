@@ -6,5 +6,3 @@ export const Notify = (type: TypeOptions, message: string) => {
   });
   return false;
 };
-
-

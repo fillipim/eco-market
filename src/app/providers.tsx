@@ -6,6 +6,7 @@ import { CacheProvider } from "@chakra-ui/next-js";
 import { ChakraProvider } from "@chakra-ui/react";
 import { customTheme } from "@/styles/chackraTheme";
 import AuthContextProvider from "@/contexts/AuthContext";
+import CartProvider from "@/contexts/CartContext";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -13,7 +14,9 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
       <ChakraProvider theme={customTheme}>
         <ThemeProvider theme={theme}>
           <AuthContextProvider>
-            {children}
+            <CartProvider>
+              {children}
+            </CartProvider>
           </AuthContextProvider>
         </ThemeProvider>
       </ChakraProvider>

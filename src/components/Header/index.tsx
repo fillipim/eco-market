@@ -14,19 +14,22 @@ import {
   MenuItem,
   IconButton as iconChackra,
   Heading,
-  Text
+  Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useAuth } from "@/contexts/AuthContext";
 import IconButton from "../IconButton";
 import Link from "next/link";
+import Cart from "../Cart";
 
 const Header: React.FC = () => {
   const { isLoged, user, logOut } = useAuth();
-  console.log(user);
-  
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
   return (
+    <>
+      <Cart isOpen={isOpen} onClose={onClose} />
     <S.Header>
-      
       <S.HeaderTop>
         <p>Welcome to Food Market</p>
         <div className="auth_nav">
@@ -43,13 +46,15 @@ const Header: React.FC = () => {
 
       <S.HeaderCenter>
         <Heading fontSize="2xl">
-          Food {" "}
-          <Text as="span" color="orange.100">Market</Text>
+          Food{" "}
+          <Text as="span" color="orange.100">
+            Market
+          </Text>
         </Heading>
 
         <S.Nav>
           <Menu>
-            <MenuButton as={iconChackra} icon={<BiUserCircle/>}></MenuButton>
+            <MenuButton as={iconChackra} icon={<BiUserCircle />}></MenuButton>
             <MenuList>
               {isLoged ? (
                 <>
@@ -60,20 +65,25 @@ const Header: React.FC = () => {
                     as={ChackraButton}
                     leftIcon={<BiLogOutCircle />}
                     onClick={logOut}
-                  >Sair</MenuItem>
+                  >
+                    Sair
+                  </MenuItem>
                 </>
               ) : (
-                <MenuItem as={Link} href="/register">Criar Conta</MenuItem>
+                <MenuItem as={Link} href="/register">
+                  Criar Conta
+                </MenuItem>
               )}
             </MenuList>
           </Menu>
-          <Button variant="unstyled">
+          <Button variant="unstyled" onClick={onOpen}>
             <BiSolidCartAlt />
             Carrinho
           </Button>
         </S.Nav>
       </S.HeaderCenter>
     </S.Header>
+    </>
   );
 };
 
