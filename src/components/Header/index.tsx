@@ -12,7 +12,9 @@ import {
   Button as ChackraButton,
   MenuList,
   MenuItem,
-  IconButton as iconChackra
+  IconButton as iconChackra,
+  Heading,
+  Text
 } from "@chakra-ui/react";
 import { useAuth } from "@/contexts/AuthContext";
 import IconButton from "../IconButton";
@@ -24,9 +26,9 @@ const Header: React.FC = () => {
   
   return (
     <S.Header>
+      
       <S.HeaderTop>
         <p>Welcome to Food Market</p>
-
         <div className="auth_nav">
           {!isLoged ? (
             <>
@@ -40,12 +42,10 @@ const Header: React.FC = () => {
       </S.HeaderTop>
 
       <S.HeaderCenter>
-        <h1>Food Market</h1>
-
-        <div className="input_box">
-          <Input placeholder="Busque por..." />
-          <IconButton aria-label="Search" icon={AiOutlineSearch} />
-        </div>
+        <Heading fontSize="2xl">
+          Food {" "}
+          <Text as="span" color="orange.100">Market</Text>
+        </Heading>
 
         <S.Nav>
           <Menu>
